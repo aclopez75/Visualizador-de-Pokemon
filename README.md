@@ -1,2 +1,1 @@
-# Prueba-Git
-Este es un repositorio de prueba.
+# Visualizador de Pokémon
