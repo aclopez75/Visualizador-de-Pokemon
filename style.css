@@ -3,3 +3,29 @@
     padding:0;
     box-sizing: border-box;
 }
+    /* Añadimos la imagen de fondo */
+body{
+    background-image: url("/img/iniciales(byn).jpg");
+}
+    /* Agregamos un display flex para distribuir el contenido correctamente */
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+    /* Modificamos las dimensiones y la posición del logo */
+#logo-pokemon{
+    height: auto;
+    width: 16rem;
+    margin-bottom: 30px;
+}
+    /* Ajustamos la disposición del contenedor de las cartas */
+#container-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 700px;
+    width: 600px;
+}
+

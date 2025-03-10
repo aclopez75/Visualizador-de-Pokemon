@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Pokemon WEB</title>
+    <title>Poke API | Pokemon Visualizer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
 </head>
 <body>
-    
+    <!-- Creamos el contenido general con la etiqueta main -->
+    <main id="container">
+        <!-- Añadimos una imagen como logo para mostrarlo como encabezado -->
+        <img src="./img/logo-pokemon.png" alt="This is an official Pokémon Logo" id="logo-pokemon">
+        <!-- Añadimos el título principal -->
+        <h1>Pokemon Visualizer</h1>
+        <!-- Añadimos el input del usuario -->
+        <input type="text" id="searchPokemon" placeholder="Search here a Pokémon...">
+        <!-- Añadimos el contenedor que originalmente esta vacío y que posteriormente rellenaremos con los datos obtenidos de la API -->
+        <div id="container-card"></div>
+
+    </main>
 
     <!-- Añadir JS -->
     <script src="./script.js"></script>
