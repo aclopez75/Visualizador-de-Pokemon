@@ -38,3 +38,13 @@ function displayPokemon(data) {
         </ul>
     `;
 }
+// Función para iniciar la búsqueda cuando el usuario escribe un nombre de Pokémon.
+document.getElementById('searchPokemon').addEventListener('input', function () {
+    const pokemonName = this.value;
+
+    if (pokemonName.length > 0) {
+        fetchPokemon(pokemonName); // Realiza la búsqueda cada vez que el usuario escribe.
+    } else {
+        document.getElementById('container-card').innerHTML = '';  // Limpiar resultados si no hay búsqueda.
+    }
+});
