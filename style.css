@@ -37,3 +37,40 @@ main{
     font-size: 1.2rem;
     text-align: center;
 }
+
+#searchPokemon:focus{
+    outline: none;
+    border: none;
+}
+
+
+    /* Modificamos las dimensiones y la posición del logo /
+#logo-pokemon{
+    height: auto;
+    width: 26rem;
+    margin-bottom: 30px;
+    margin-top: 25px;
+}
+    / Ajustamos la disposición del contenedor de las cartas */
+#container-card{
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.71);
+    backdrop-filter: blur(10px);
+    height: auto;
+    width: auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#container{
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.527);
+    border-radius: 10px;
+    padding: 30px;
+    gap: 60px;
+
+}
