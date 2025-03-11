@@ -5,8 +5,7 @@
 }
 /* Aqui hemos buscado un tipo de letra en google fonts, hemos elegido la que nos ha gustado y la hemos importado. */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-/* Añadimos la imagen de fondo */
+    /* Añadimos la imagen de fondo */
 body{
     background-image: url("./img/iniciales.jpg");
     background-size: cover;
@@ -20,8 +19,7 @@ body{
     display: flex;
     justify-content: center;
 }
-
-/* Agregamos un display flex para distribuir el contenido correctamente */
+    /* Agregamos un display flex para distribuir el contenido correctamente */
 main{
     display: flex;
     align-items: center;
@@ -39,22 +37,20 @@ main{
     font-size: 1.2rem;
     text-align: center;
 }
-
 #searchPokemon:focus{
     outline: none;
     border: none;
 }
 
 
-/* Modificamos las dimensiones y la posición del logo */
+    /* Modificamos las dimensiones y la posición del logo */
 #logo-pokemon{
     height: auto;
     width: 26rem;
     margin-bottom: 30px;
     margin-top: 25px;
 }
-
-/* Ajustamos la disposición del contenedor */
+    /* Ajustamos la disposición del contenedor de las cartas */
 #container-card{
     display: flex;
     gap: 50px;
@@ -75,24 +71,25 @@ main{
     border-radius: 10px;
     padding: 30px;
     gap: 60px;
+    
+}
+
+
+#pokemonImg{
+background-color: rgba(255, 255, 255, 0.743);
+display: flex;
+align-items: center;
+/* border-radius: 20px; */
+}
+
+h2{
+    margin-bottom: 10px;
+}
+
+#pokemonData{
 
 }
 
-#pokemonImg{
-    background-color: rgba(255, 255, 255, 0.743);
-    display: flex;
-    align-items: center;
-    /* border-radius: 20px; */
-    }
-    
-    h2{
-        margin-bottom: 10px;
-    }
-    
-/* #pokemonData{
-    
-} */
-    
 #pokemonStats{
     background-color: rgba(128, 128, 128, 0.527) ;
     display: flex;
@@ -101,4 +98,25 @@ main{
     padding: 30px;
     gap: 50px;
     border-radius: 10px;
+    
+
+    
+}
+.stats-container{
+    display: flex;
+    gap: 20px;
+}
+.stat{
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+.stat-name{
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+.stat-value{
+    font-size: 2.5rem;
+    
 }
