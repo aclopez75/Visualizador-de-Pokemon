@@ -3,29 +3,37 @@
     padding:0;
     box-sizing: border-box;
 }
+    /* Aqui hemos buscado un tipo de letra en google fonts, hemos elegido la que nos ha gustado y la hemos importado. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
     /* Añadimos la imagen de fondo */
 body{
-    background-image: url("/img/iniciales(byn).jpg");
+    background-image: url("./img/iniciales.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
 }
     /* Agregamos un display flex para distribuir el contenido correctamente */
 main{
     display: flex;
     align-items: center;
     flex-direction: column;
-}
-    /* Modificamos las dimensiones y la posición del logo */
-#logo-pokemon{
-    height: auto;
-    width: 16rem;
-    margin-bottom: 30px;
-}
-    /* Ajustamos la disposición del contenedor de las cartas */
-#container-card{
-    display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: white;
-    height: 700px;
-    width: 600px;
 }
 
+#searchPokemon{
+    background-color: white;
+    width: 260px;
+    padding: 13px;
+    margin: 20px;
+    border: white;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+}
