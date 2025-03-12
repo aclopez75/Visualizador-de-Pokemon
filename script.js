@@ -23,6 +23,7 @@ async function fetchPokemon(pokemonName) {
 // Función para mostrar la información del Pokémon.
 function displayPokemon(data) {
     const pokemonInfo = document.getElementById('container-card');
+    pokemonInfo.style.display="flex";
     
     pokemonInfo.innerHTML = `
     <div id="container">
