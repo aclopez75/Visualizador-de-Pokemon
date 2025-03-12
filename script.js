@@ -138,3 +138,32 @@ function showSuggestions(pokemons) {
     suggestionsContainer.style.display = "none"; // Si no hay sugerencias, ocultarlas
   }
 }
+
+// Event listener para el input de búsqueda
+document.getElementById("searchPokemon").addEventListener("input", function () {
+  const pokemonName = this.value;
+
+  if (pokemonName.length > 0) {
+    searchSuggestions(pokemonName); // Buscar sugerencias mientras el usuario escribe
+  } else {
+    document.getElementById("suggestions").style.display = "none"; // Ocultar sugerencias cuando el input está vacío
+    
+    
+    // Reiniciar las funciones (excepto la de obtener datos de la API)
+    resetSearch(); // Llamamos a la función que limpia la búsqueda
+  }
+
+  // Limpiar los resultados si no hay búsqueda
+  if (pokemonName.length === 0) {
+    document.getElementById("container-card").innerHTML = "";
+  }
+});
+
+// Función para reiniciar las sugerencias y la interfaz al borrar el input
+function resetSearch() {
+  // Ocultar las sugerencias de Pokémon
+  document.getElementById("searchPokemon").style.borderRadius = "15px";
+  
+  // Limpiar cualquier información del Pokémon mostrado
+  document.getElementById("container-card").style.display = "none";
+}
