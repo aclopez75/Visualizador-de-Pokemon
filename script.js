@@ -55,7 +55,7 @@ function displayPokemon(data) {
 }
 
 // Función para iniciar la búsqueda cuando el usuario escribe un nombre de Pokémon.
-document.getElementById("searchPokemon").addEventListener("input", function () {
+document.getElementById("searchPokemon").addEventListener("change", function () {
   const pokemonName = this.value;
 
   if (pokemonName.length > 0) {
