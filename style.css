@@ -3,9 +3,9 @@
     padding:0;
     box-sizing: border-box;
 }
-/* Aqui hemos buscado un tipo de letra en google fonts, hemos elegido la que nos ha gustado y la hemos importado. */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-    /* Añadimos la imagen de fondo */
+    
 body{
     background-image: url("./img/iniciales.jpg");
     background-size: cover;
@@ -19,7 +19,8 @@ body{
     font-style: normal;
     font-size: 1.5rem;
 }
-    /* Agregamos un display flex para distribuir el contenido correctamente */
+
+    
 main{
     display: flex;
     flex-direction: column;
@@ -37,20 +38,19 @@ main{
     font-size: 1.2rem;
     text-align: center;
 }
+
 #searchPokemon:focus{
     outline: none;
     border: none;
 }
 
-
-    /* Modificamos las dimensiones y la posición del logo */
 #logo-pokemon{
     height: auto;
     width: 26rem;
     margin-bottom: 30px;
     margin-top: 25px;
 }
-    /* Ajustamos la disposición del contenedor de las cartas */
+
 #container-card{
     background-color: rgba(255, 255, 255, 0.71);
     backdrop-filter: blur(10px);
@@ -58,11 +58,16 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 25px;
     height: auto;
     width: auto;
     padding: 20px;
     border-radius: 20px;
+    transition: all 0,3s ease;
+}
+
+#container-card:hover{
+    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.274);
 }
 
 #container{
@@ -71,9 +76,13 @@ main{
     padding: 30px;
     gap: 60px;
     border-radius: 10px;
-    
+    transition: all 0,3s ease;
 }
 
+#container:hover{
+    box-shadow: 0 0 15px 8px rgba(1, 31, 90, 0.466);
+    scale: 1.01;
+}
 
 #pokemonImg{
     background-color: rgba(255, 255, 255, 0.743);
@@ -93,6 +102,12 @@ h2{
     padding: 30px;
     gap: 50px;
     border-radius: 10px;
+    transition: all 0,3s ease;
+}
+
+#pokemonStats:hover{
+    box-shadow: 0 0 15px 8px rgba(255, 221, 51, 0.507);
+    scale: 1.01;
 }
 
 .stats-container{
@@ -115,7 +130,6 @@ h2{
 .stat-value{
     font-size: 2.5rem;
 }
-
 
 @media (max-width: 600px){
     body{
@@ -193,10 +207,31 @@ h2{
     }
 }
 
-/* @media (min-width: 800px){
+@media (min-width: 600px) and (max-width: 800px) {
 
+    #logo-pokemon{
+        width: 45%;
+    }
+
+    #searchPokemon{
+        margin-bottom: 55px;
+    }
+
+    #container-card{
+        height: 500px;
+        gap: 45px;
+    }
+
+    #pokemonStats{
+        gap: 25px;
+        padding: 30px;
+    }
+
+    .stat-name{
+        font-size: 1rem;
+    }
+
+    .stat-value{
+        font-size: 2rem;
+    }
 }
-
-@media (min-with: 1000px){
-
-} */
