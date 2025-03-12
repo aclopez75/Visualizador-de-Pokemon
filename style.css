@@ -31,9 +31,8 @@ main{
 #searchPokemon{
     background-color: white;
     width: 260px;
-    padding: 13px;
-    margin: 20px;
     border: white;
+    padding: 10px;
     border-radius: 15px;
     font-size: 1.2rem;
     text-align: center;
@@ -62,6 +61,7 @@ main{
     height: auto;
     width: auto;
     padding: 20px;
+    margin-top: 20px;
     border-radius: 20px;
     transition: all 0,3s ease;
 }
@@ -130,8 +130,33 @@ h2{
 .stat-value{
     font-size: 2.5rem;
 }
+/* ---------------------------------------------------------------------------------------- */
+
+#suggestions {
+    background-color: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    position: static;
+    overflow-y: auto;
+    width: 260px;
+    max-height: 500px;
+    z-index: 10;
+    display: none;
+  }
+  
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+/* ---------------------------------------------------------------------------------------- */
 
 @media (max-width: 600px){
+
     body{
         background-size: cover;
         background-position: center;
@@ -144,15 +169,18 @@ h2{
     #logo-pokemon{
         height: auto;
         width: 12rem;
-        margin-bottom: 2px;
+        margin-bottom: 20px;
     }
 
     #searchPokemon {
-        width: 100%;
+        width: 80%;
         padding: 8px;
         font-size: 0.8rem;
     }
 
+    #suggestions {
+        width: 80%;
+    }
     #container-card{
         height: auto;
         width: 80%;

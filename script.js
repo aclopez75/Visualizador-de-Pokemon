@@ -15,7 +15,6 @@ async function fetchPokemon(pokemonName) {
     displayPokemon(data);
   } catch (error) {
     console.log(error.message);
-    // Puedes descomentar la siguiente línea para mostrar un mensaje de error
     // alert("We haven't found any Pokemon with that name in our database.");
   }
 }
@@ -64,3 +63,78 @@ document.getElementById("searchPokemon").addEventListener("change", function () 
     document.getElementById("container-card").innerHTML = ""; // Limpiar resultados si no hay búsqueda.
   }
 });
+
+// ---
+
+// Función para buscar sugerencias de Pokémon mientras se escribe en el input.
+async function searchSuggestions(query) {
+  if (query.length < 1) { // Solo mostrar sugerencias si el texto tiene al menos 1 carácter
+    document.getElementById("suggestions").style.display = "none";
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0`
+    );
+    const data = await response.json();
+
+    // Filtrar los Pokémon que contengan el texto ingresado en cualquier parte del nombre
+    const filteredPokemons = data.results.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Ordenar los Pokémon para que los que coincidan exactamente (empiezan con el texto) vayan primero
+    const sortedPokemons = filteredPokemons.sort((a, b) => {
+      // Priorizar las coincidencias exactas, luego ordenar alfabéticamente
+      const startsWithA = a.name.toLowerCase().startsWith(query.toLowerCase());
+      const startsWithB = b.name.toLowerCase().startsWith(query.toLowerCase());
+
+      if (startsWithA && !startsWithB) {
+        return -1; // "a" debe ir antes que "b"
+      }
+      if (!startsWithA && startsWithB) {
+        return 1; // "b" debe ir antes que "a"
+      }
+      return a.name.localeCompare(b.name); // Ordenar alfabéticamente
+    });
+
+    // Limitar a 10 resultados
+    const topPokemons = sortedPokemons.slice(0, 10);
+
+    showSuggestions(topPokemons); // Muestra las sugerencias en la interfaz
+  } catch (error) {
+    console.error('Error fetching Pokémon suggestions:', error);
+  }
+}
+
+// Función para mostrar las sugerencias de Pokémon debajo del input.
+function showSuggestions(pokemons) {
+  const suggestionsContainer = document.getElementById("suggestions");
+  suggestionsContainer.innerHTML = ""; // Limpiar las sugerencias anteriores
+
+  if (pokemons.length > 0) {
+    suggestionsContainer.style.display = "block";
+    
+    const searchPokemon = document.getElementById("searchPokemon");
+    searchPokemon.style.borderBottomLeftRadius = "0px";
+    searchPokemon.style.borderBottomRightRadius = "0px";
+    
+    pokemons.forEach(pokemon => {
+      const suggestionItem = document.createElement("div");
+      suggestionItem.classList.add("suggestion-item");
+      suggestionItem.textContent = pokemon.name;
+      
+      suggestionItem.addEventListener("click", () => {
+        document.getElementById("searchPokemon").value = pokemon.name;
+        document.getElementById("searchPokemon").style.borderRadius = "15px";
+        suggestionsContainer.style.display = "none"; // Ocultar las sugerencias al seleccionar una
+        fetchPokemon(pokemon.name); // Mostrar el Pokémon seleccionado
+      });
+      
+      suggestionsContainer.appendChild(suggestionItem);
+    });
+  } else {
+    suggestionsContainer.style.display = "none"; // Si no hay sugerencias, ocultarlas
+  }
+}
