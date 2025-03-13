@@ -5,7 +5,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-    
+
 body{
     background-image: url("./img/iniciales.jpg");
     background-size: cover;
@@ -73,6 +73,8 @@ main{
 #container{
     background-color: rgba(128, 128, 128, 0.527);
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 30px;
     gap: 60px;
     border-radius: 10px;
@@ -80,14 +82,17 @@ main{
 }
 
 #container:hover{
-    box-shadow: 0 0 15px 8px rgba(1, 31, 90, 0.466);
+    box-shadow: 0 0 15px 8px rgba(2, 46, 135, 0.772);
     scale: 1.01;
 }
 
 #pokemonImg{
     background-color: rgba(255, 255, 255, 0.743);
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 125px;
+    width: auto;
 }
 
 h2{
@@ -155,21 +160,18 @@ h2{
   
 /* ---------------------------------------------------------------------------------------- */
 
-#shinyButton {
-    background-color: #ff7f50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 15px;
-    cursor: pointer;
+#toggleShiny {
+    background-color: white;/*rgb(237, 29, 36) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
-    margin-top: 15px;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
 }
 
-#shinyButton:hover {
-    background-color: #ff6347;
-}
 
 @media (max-width: 600px){
 

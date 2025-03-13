@@ -41,7 +41,7 @@ function displayPokemon(data) {
           <img id="pokemonBack" src="${backImg}" alt="${data.name}">
       </div>
 
-      <button id="toggleShiny">✨ Show Shiny ✨</button>
+      <button id="toggleShiny">Shiny</button>
 
       <div id="pokemonData">
           <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
@@ -72,7 +72,7 @@ function displayPokemon(data) {
       if (frontImage.src === data.sprites.front_default) {
           // Cambiar a imágenes shiny
           frontImage.src = data.sprites.front_shiny;
-          this.textContent = "🔄 Show Normal";
+          this.textContent = "Default";
           if(data.sprites.back_default){
             return backImage.src = data.sprites.back_shiny;
             } else{
@@ -81,7 +81,7 @@ function displayPokemon(data) {
       } else {
           // Volver a imágenes normales
           frontImage.src = data.sprites.front_default;
-          this.textContent = "✨ Show Shiny ✨";
+          this.textContent = "Shiny";
           if(data.sprites.back_default){
             return backImage.src = data.sprites.back_default;
             } else{
