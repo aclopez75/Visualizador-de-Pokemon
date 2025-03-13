@@ -31,37 +31,56 @@ function getBackImg (pokemon){
 
 // Función para mostrar la información del Pokémon.
 function displayPokemon(data) {
-    const pokemonInfo = document.getElementById('container-card');
-    pokemonInfo.style.display="flex";
-    const backImg = getBackImg(data);
-    
-    pokemonInfo.innerHTML = `
-    <div id="container">
-        <div id="pokemonImg">
-            <img src="${data.sprites.front_default}" alt="${data.name}">
-            <img src ="${backImg}" alt="${data.name}">
-            </div>
+  const pokemonInfo = document.getElementById('container-card');
+  pokemonInfo.style.display = "flex";
 
-        <div id="pokemonData">
-            <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
-            <p><strong>Weight:</strong> ${data.weight}</p>
-            <p><strong>Height:</strong> ${data.height}</p>
-            <p><strong>Types:</strong> ${data.types.map(type => type.type.name).join(', ')}</p>
-        </div>
-    </div>
-    
-      <div id="pokemonStats">
-        <h3><strong>Base Stats</strong></h3>
-        <div class="stats-container">
-            ${data.stats.map(stat =>` 
-                <div class="stat">
-                    <p class="stat-name">${stat.stat.name}</p>
-                    <p class="stat-value">${stat.base_stat}</p>
-                </div>
-            `).join('')}
-        </div>
-    </div>
-    `;
+  pokemonInfo.innerHTML = `
+  <div id="container">
+      <div id="pokemonImg">
+          <img id="pokemonFront" src="${data.sprites.front_default}" alt="${data.name}">
+          <img id="pokemonBack" src="${data.sprites.back_default}" alt="${data.name}">
+      </div>
+
+      <button id="toggleShiny">✨ Show Shiny ✨</button>
+
+      <div id="pokemonData">
+          <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
+          <p><strong>Weight:</strong> ${data.weight}</p>
+          <p><strong>Height:</strong> ${data.height}</p>
+          <p><strong>Types:</strong> ${data.types.map(type => type.type.name).join(', ')}</p>
+      </div>
+  </div>
+  
+  <div id="pokemonStats">
+      <h3><strong>Base Stats</strong></h3>
+      <div class="stats-container">
+          ${data.stats.map(stat =>` 
+              <div class="stat">
+                  <p class="stat-name">${stat.stat.name}</p>
+                  <p class="stat-value">${stat.base_stat}</p>
+              </div>
+          `).join('')}
+      </div>
+  </div>
+  `;
+
+  // Agregar evento al botón para alternar entre imágenes normales y shiny
+  document.getElementById("toggleShiny").addEventListener("click", function () {
+      const frontImage = document.getElementById("pokemonFront");
+      const backImage = document.getElementById("pokemonBack");
+
+      if (frontImage.src === data.sprites.front_default) {
+          // Cambiar a imágenes shiny
+          frontImage.src = data.sprites.front_shiny;
+          backImage.src = data.sprites.back_shiny;
+          this.textContent = "🔄 Show Normal";
+      } else {
+          // Volver a imágenes normales
+          frontImage.src = data.sprites.front_default;
+          backImage.src = data.sprites.back_default;
+          this.textContent = "✨ Show Shiny ✨";
+      }
+  });
 }
 
 // Función para iniciar la búsqueda cuando el usuario escribe un nombre de Pokémon.

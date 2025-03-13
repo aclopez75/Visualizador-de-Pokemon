@@ -155,7 +155,7 @@ h2{
   
 /* ---------------------------------------------------------------------------------------- */
 
-/* #shinyButton {
+#shinyButton {
     background-color: #ff7f50;
     color: white;
     border: none;
@@ -169,7 +169,7 @@ h2{
 
 #shinyButton:hover {
     background-color: #ff6347;
-} */
+}
 
 @media (max-width: 600px){
 
