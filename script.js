@@ -73,7 +73,7 @@ function displayPokemon(data) {
           // Cambiar a imágenes shiny
           frontImage.src = data.sprites.front_shiny;
           this.textContent = "🔄 Show Normal";
-          if(pokemon.sprites.back_default){
+          if(data.sprites.back_default){
             return backImage.src = data.sprites.back_shiny;
             } else{
               return backImage.src = './img/close.png';
@@ -82,7 +82,7 @@ function displayPokemon(data) {
           // Volver a imágenes normales
           frontImage.src = data.sprites.front_default;
           this.textContent = "✨ Show Shiny ✨";
-          if(pokemon.sprites.back_default){
+          if(data.sprites.back_default){
             return backImage.src = data.sprites.back_default;
             } else{
               return backImage.src = './img/close.png';
