@@ -18,13 +18,14 @@ async function fetchPokemon(pokemonName) {
     // alert("We haven't found any Pokemon with that name in our database.");
   }
 }
+
 // Funcion para llamar a la imágen de detrás
 
 function getBackImg (pokemon){
-  if(pokemon.sprites.back_default){
-    return pokemon.sprites.back_default;
+  if(pokemon.sprites.other.showdown.back_default){
+    return pokemon.sprites.other.showdown.back_default;
     } else{
-      return './img/close.png'
+      return './img/not-found.png'
     }
 }
 
@@ -37,11 +38,12 @@ function displayPokemon(data) {
   pokemonInfo.innerHTML = `
   <div id="container">
       <div id="pokemonImg">
-          <img id="pokemonFront" src="${data.sprites.front_default}" alt="${data.name}">
+          <img id="pokemonFront" src="${data.sprites.other.showdown.front_default}" alt="${data.name}">
+          <button id="toggleShiny"><img id="shinySparkleImg" src="./img/shiny-sparkle.png"></button>
           <img id="pokemonBack" src="${backImg}" alt="${data.name}">
       </div>
 
-      <button id="toggleShiny">Shiny</button>
+      
 
       <div id="pokemonData">
           <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
@@ -69,21 +71,21 @@ function displayPokemon(data) {
       const frontImage = document.getElementById("pokemonFront");
       const backImage = document.getElementById("pokemonBack");
 
-      if (frontImage.src === data.sprites.front_default) {
+      if (frontImage.src === data.sprites.other.showdown.front_default) {
           // Cambiar a imágenes shiny
-          frontImage.src = data.sprites.front_shiny;
-          this.textContent = "Default";
-          if(data.sprites.back_default){
-            return backImage.src = data.sprites.back_shiny;
+          frontImage.src = data.sprites.other.showdown.front_shiny;
+          // this.textContent = "Default";
+          if(data.sprites.other.showdown.back_default){
+            return backImage.src = data.sprites.other.showdown.back_shiny;
             } else{
               return backImage.src = './img/close.png';
           }
       } else {
           // Volver a imágenes normales
-          frontImage.src = data.sprites.front_default;
-          this.textContent = "Shiny";
-          if(data.sprites.back_default){
-            return backImage.src = data.sprites.back_default;
+          frontImage.src = data.sprites.other.showdown.front_default;
+          // this.textContent = "Shiny";
+          if(data.sprites.other.showdown.back_default){
+            return backImage.src = data.sprites.other.showdown.back_default;
             } else{
               return backImage.src = './img/close.png';
           }
@@ -151,13 +153,14 @@ function showSuggestions(pokemons) {
   const suggestionsContainer = document.getElementById("suggestions");
   suggestionsContainer.innerHTML = ""; // Limpiar las sugerencias anteriores
 
+  const searchPokemon = document.getElementById("searchPokemon");
+
   if (pokemons.length > 0) {
     suggestionsContainer.style.display = "block";
     
-    const searchPokemon = document.getElementById("searchPokemon");
     searchPokemon.style.borderBottomLeftRadius = "0px";
     searchPokemon.style.borderBottomRightRadius = "0px";
-    
+  
     pokemons.forEach(pokemon => {
       const suggestionItem = document.createElement("div");
       suggestionItem.classList.add("suggestion-item");
@@ -174,6 +177,8 @@ function showSuggestions(pokemons) {
     });
   } else {
     suggestionsContainer.style.display = "none"; // Si no hay sugerencias, ocultarlas
+    searchPokemon.style.borderBottomLeftRadius = "15px";
+    searchPokemon.style.borderBottomRightRadius = "15px";
   }
 }
 
