@@ -18,18 +18,29 @@ async function fetchPokemon(pokemonName) {
     // alert("We haven't found any Pokemon with that name in our database.");
   }
 }
+// Funcion para llamar a la imágen de detrás
+
+function getBackImg (pokemon){
+  if(pokemon.sprites.back_default){
+    return pokemon.sprites.back_default;
+    } else{
+      return './img/X1.png'
+    }
+}
+
 
 // Función para mostrar la información del Pokémon.
 function displayPokemon(data) {
     const pokemonInfo = document.getElementById('container-card');
     pokemonInfo.style.display="flex";
+    const backImg = getBackImg(data);
     
     pokemonInfo.innerHTML = `
     <div id="container">
         <div id="pokemonImg">
             <img src="${data.sprites.front_default}" alt="${data.name}">
-            <img src="${data.sprites.back_default}" alt="${data.name}">
-        </div>
+            <img src ="${backImg}" alt="${data.name}">
+            </div>
 
         <div id="pokemonData">
             <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
