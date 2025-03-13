@@ -24,21 +24,21 @@ function getBackImg (pokemon){
   if(pokemon.sprites.back_default){
     return pokemon.sprites.back_default;
     } else{
-      return './img/X1.png'
+      return './img/close.png'
     }
 }
-
 
 // Función para mostrar la información del Pokémon.
 function displayPokemon(data) {
   const pokemonInfo = document.getElementById('container-card');
   pokemonInfo.style.display = "flex";
+  const backImg = getBackImg(data);
 
   pokemonInfo.innerHTML = `
   <div id="container">
       <div id="pokemonImg">
           <img id="pokemonFront" src="${data.sprites.front_default}" alt="${data.name}">
-          <img id="pokemonBack" src="${data.sprites.back_default}" alt="${data.name}">
+          <img id="pokemonBack" src="${backImg}" alt="${data.name}">
       </div>
 
       <button id="toggleShiny">✨ Show Shiny ✨</button>
