@@ -126,6 +126,7 @@ function getMaxStatValue(statName) {
   </div>
 
   <div id="pokemonStats">
+  <h3>BASE STATS</h3>
       <div class="stats-container">
           ${data.stats.map(stat => { 
               const statName = stat.stat.name;
@@ -136,6 +137,7 @@ function getMaxStatValue(statName) {
               return ` 
               
               <div class="stat">
+              
               <p class="stat-name">${statName}</p>
                   <div class="bar-container">
                       <div class="bar" style="width: ${percentage}%"></div>
