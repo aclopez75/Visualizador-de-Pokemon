@@ -23,18 +23,24 @@ body{
 main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
 #searchPokemon{
+    margin-top: 4rem;
     background-color: white;
-    width: 260px;
-    border: white;
-    padding: 10px;
+    width: 160px;
+    border: rgb(54, 54, 54) 10px;
+    padding: 6px;
     border-radius: 15px;
-    font-size: 1.2rem;
-    text-align: center;
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    z-index: 1;
+    
+    
 }
 
 #searchPokemon:focus{
@@ -42,15 +48,21 @@ main{
     border: none;
 }
 
+#searchPokemon::placeholder{
+    font-size: 0.75rem;
+    /* text-transform: uppercase; */
+    font-weight: 600;
+}
+
 #logo-pokemon{
     height: auto;
-    width: 16rem;
-    margin-bottom: 30px;
-    margin-top: 25px;
+    width: 20rem;
+    margin-bottom: 10px;
+    margin-top: 40px;
 }
 
 #container-card{
-    background-color: rgba(255, 255, 255, 0.71);
+    background-color: rgba(48, 48, 48, 0.71);
     backdrop-filter: blur(10px);
     display: none;
     flex-direction: column;
@@ -62,11 +74,11 @@ main{
     padding: 20px;
     margin-top: 20px;
     border-radius: 20px;
-    transition: all 0,3s ease;
+    transition: all 0,5s ease;
 }
 
 #container-card:hover{
-    box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.274);
+    /* box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.274); */
 }
 
 #container{
@@ -77,11 +89,11 @@ main{
     padding: 30px;
     gap: 60px;
     border-radius: 10px;
-    transition: all 0,3s ease;
+    transition: all 0.4s ease;
 }
 
 #container:hover{
-    box-shadow: 0 0 15px 8px rgba(2, 46, 135, 0.772);
+    box-shadow: 0 5px 8px -4px rgba(99, 99, 99, 0.685);
     scale: 1.01;
 }
 
@@ -91,58 +103,106 @@ main{
     align-items: center;
     height: 150px;
     width: auto;
+    
 }
+
 
 #pokemonFront{
     max-width: 95%;
     max-height: 95%;
+    transition: opacity 1s ease, transform 1s ease, all 1s ease;
+}
+
+#pokemonFront:hover{
+    scale: 1.1;
 }
 
 #pokemonBack{
     max-width: 95%;
     max-height: 95%;
+    transition: opacity 1s ease, transform 1s ease, all 1s ease;
+}
+
+#pokemonBack:hover{
+    scale: 1.1;
 }
 
 h2{
-    margin-bottom: 10px;
+    /* background-color: #fff;
+    border-radius: 15px;
+    padding: 10px; */
 }
 
-#pokemonStats{
+#pokemonStats {
     background-color: rgba(128, 128, 128, 0.527);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 30px;
-    gap: 50px;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
     border-radius: 10px;
-    transition: all 0,3s ease;
+    transition: all 0.4s ease;
+    width: 100%;
 }
 
-#pokemonStats:hover{
-    box-shadow: 0 0 15px 8px rgba(255, 221, 51, 0.507);
+#pokemonStats:hover {
+    box-shadow: 0 5px 8px -4px rgba(99, 99, 99, 0.685);
     scale: 1.01;
 }
 
-.stats-container{
-    display: flex;
-    gap: 20px;
+/* Añadir diseño a los contenedores de "type" */
+
+#typesBox{
+    font-size: 0.75rem;
+  
+    
 }
 
-.stat{
+
+#pokemonStats {
+    margin-top: 20px;
+  }
+  
+  .stats-container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .stat {
+    display: flex;
     align-items: center;
     gap: 10px;
-}
+  }
+  
+  .stat-name {
+    font-weight: bold;
+    text-transform: capitalize;
+    width: 120px;
+  }
+  
+  .bar-container {
+    width: 200px;
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .bar {
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.3s ease-in-out;
+    border-radius: 10px 0 0 10px; /* Redondea la parte de la barra que se llena */
+  }
+  
+  .stat-value {
+    font-weight: bold;
+    width: 40px;
+    text-align: right;
+  }
 
-.stat-name{
-    text-transform: uppercase;
-    font-size: 1.2rem;
-}
 
-.stat-value{
-    font-size: 2.5rem;
-}
+  
 
 /* ---------------------------------------------------------------------------------------- */
 
@@ -159,10 +219,11 @@ h2{
     border-bottom-right-radius: 15px;
     position: static;
     overflow-y: auto;
-    width: 260px;
+    width: 160px;
     max-height: 250px;
     z-index: 10;
     display: none;
+    font-size: 1rem;
   }
   
   .suggestion-item{
@@ -179,8 +240,8 @@ h2{
 #toggleShiny{
     background-color: rgba(128, 128, 128, 0);
     display: flex;
-    height: 100px;
-    width: 150px;
+    height: auto;
+    width: 100px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -188,10 +249,13 @@ h2{
 }
 
 #shinySparkleImg{
-    padding: 3px;
-    max-height: 80%;
+    /* padding: 3px; */
+    height: 50%;
     max-width: 100%;
+    scale: 0.5;
 }
+
+
 
 /* ---------------------------------------------------------------------------------------- */
 

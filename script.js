@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Función asincrónica para obtener datos del Pokémon de la API.
 async function fetchPokemon(pokemonName) {
@@ -13,6 +13,7 @@ async function fetchPokemon(pokemonName) {
     }
     const data = await response.json();
     displayPokemon(data);
+    typeColors(data);
   } catch (error) {
     console.log(error.message);
     // alert("We haven't found any Pokemon with that name in our database.");
@@ -29,42 +30,122 @@ function getBackImg (pokemon){
     }
 }
 
+function typeColors(data) {
+  const typesContainer = document.getElementById('typesBox');
+  typesContainer.innerHTML = ""; // Limpiar contenido antes de añadir nuevos tipos
+
+  // Mapeo de colores por tipo
+  const typeColors = {
+      normal: "#A8A878",
+      grass: "#78C850",
+      fire: "#F08030",
+      water: "#6890F0",
+      electric: "#F8D030",
+      ice: "#98D8D8",
+      fighting: "#C03028",
+      poison: "#A040A0",
+      ground: "#E0C068",
+      flying: "#A890F0",
+      psychic: "#F85888",
+      bug: "#A8B820",
+      rock: "#B8A038",
+      ghost: "#705898",
+      dragon: "#7038F8",
+      dark: "#705848",
+      steel: "#B8B8D0",
+      fairy: "#EE99AC"
+  };
+
+  // Recorrer todos los tipos del Pokémon
+  data.types.forEach(typeInfo => {
+      const typeName = typeInfo.type.name; // Nombre del tipo
+      const typeColor = typeColors[typeName] || "#68A090"; // Color, con un fallback
+      const typeDiv = document.createElement('div');
+
+      // Aplicar estilos al contenedor del tipo
+      typeDiv.style.backgroundColor = typeColor;
+      typeDiv.style.color = "black";
+      typeDiv.style.padding = "5px 10px";
+      typeDiv.style.borderRadius = "10px";
+      typeDiv.style.display = "inline-block";
+      typeDiv.style.fontWeight = "600";
+      typeDiv.style.textTransform = "uppercase";
+      typeDiv.style.width = "fit-content";
+      typeDiv.style.marginRight = "10px";
+      typeDiv.style.marginBottom = "10px";
+
+      // Crear el texto del tipo
+      const typeText = document.createElement('span');
+      typeText.textContent = typeName;
+
+      // Agregar icono y texto al contenedor del tipo
+      typeDiv.appendChild(typeText);
+
+      // Agregar el tipo al contenedor principal
+      typesContainer.appendChild(typeDiv);
+  });
+}
+
 // Función para mostrar la información del Pokémon.
 function displayPokemon(data) {
   const pokemonInfo = document.getElementById('container-card');
   pokemonInfo.style.display = "flex";
   const backImg = getBackImg(data);
+  const statMaxValues = {
+    hp: 255,
+    attack: 190,
+    defense: 250,
+    special_attack: 190,
+    special_defense: 250,
+    speed: 150
+  };
 
+  // Función para obtener el valor máximo de la estadística de la API
+function getMaxStatValue(statName) {
+  // Convertir el nombre de la estadística a formato con guiones bajos (en caso de que sea con guiones medios)
+  const normalizedStatName = statName.replace(/-/g, "_");
+  
+  // Retornar el valor máximo correspondiente, si existe en el objeto
+  return statMaxValues[normalizedStatName] || 0; // Si no existe, retorna 0
+}
+  
   pokemonInfo.innerHTML = `
   <div id="container">
       <div id="pokemonImg">
           <img id="pokemonFront" src="${data.sprites.other.showdown.front_default}" alt="${data.name}">
-          <button id="toggleShiny"><img id="shinySparkleImg" src="./img/shiny-sparkle.png"></button>
+          <button id="toggleShiny"><img id="shinySparkleImg" src="./img/shiny-sparkle.png" alt="Shiny"></button>
           <img id="pokemonBack" src="${backImg}" alt="${data.name}">
       </div>
 
-      
-
       <div id="pokemonData">
           <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
-          <p><strong>Weight:</strong> ${data.weight}</p>
-          <p><strong>Height:</strong> ${data.height}</p>
-          <p><strong>Types:</strong> ${data.types.map(type => type.type.name).join(', ')}</p>
+          <div id="typesBox"></div> 
+          <p><strong>Weight:</strong> ${data.weight / 10}kg</p>
+          <p><strong>Height:</strong> ${data.height / 10}m</p>
       </div>
   </div>
-  
+
   <div id="pokemonStats">
-      <h3><strong>Base Stats</strong></h3>
       <div class="stats-container">
-          ${data.stats.map(stat =>` 
+          ${data.stats.map(stat => { 
+              const statName = stat.stat.name;
+              const statValue = stat.base_stat;
+              const maxStatValue = getMaxStatValue(statName);
+              const percentage = (statValue / maxStatValue) * 100;
+              
+              return ` 
+              
               <div class="stat">
-                  <p class="stat-name">${stat.stat.name}</p>
-                  <p class="stat-value">${stat.base_stat}</p>
-              </div>
-          `).join('')}
+              <p class="stat-name">${statName}</p>
+                  <div class="bar-container">
+                      <div class="bar" style="width: ${percentage}%"></div>
+                  </div>
+                  <p class="stat-value">${statValue}</p>
+              </div>`;
+          }).join('')}
       </div>
   </div>
-  `;
+`;
 
   // Agregar evento al botón para alternar entre imágenes normales y shiny
   document.getElementById("toggleShiny").addEventListener("click", function () {
@@ -80,6 +161,9 @@ function displayPokemon(data) {
             } else{
               return backImage.src = './img/close.png';
           }
+          frontImage.classList.add("shiny");
+          backImage.classList.add("shiny");
+          
       } else {
           // Volver a imágenes normales
           frontImage.src = data.sprites.other.showdown.front_default;
@@ -103,8 +187,6 @@ document.getElementById("searchPokemon").addEventListener("change", function () 
     document.getElementById("container-card").innerHTML = ""; // Limpiar resultados si no hay búsqueda.
   }
 });
-
-// ---
 
 // Función para buscar sugerencias de Pokémon mientras se escribe en el input.
 async function searchSuggestions(query) {
@@ -190,7 +272,6 @@ document.getElementById("searchPokemon").addEventListener("input", function () {
     searchSuggestions(pokemonName); // Buscar sugerencias mientras el usuario escribe
   } else {
     document.getElementById("suggestions").style.display = "none"; // Ocultar sugerencias cuando el input está vacío
-    
     
     // Reiniciar las funciones (excepto la de obtener datos de la API)
     resetSearch(); // Llamamos a la función que limpia la búsqueda
