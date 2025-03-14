@@ -147,10 +147,33 @@ function getMaxStatValue(statName) {
   </div>
 `;
 
+// Variable que va a guardar el audio
+const clickSound = new Audio('./click-sound.wav');
+
+let isSoundPlaying = false;
+
+// Función para manejar la reproducción del sonido
+function playClickSound() {
+  if (isSoundPlaying) {
+    // Si el sonido ya se está reproduciendo, lo detenemos y lo reiniciamos
+    clickSound.pause();
+    clickSound.currentTime = 0; // Rewind al principio
+  }
+  // Iniciar la reproducción del sonido
+  clickSound.play();
+  isSoundPlaying = true;
+
+  // Escuchar el evento 'ended' para resetear la funcion una vez que el sonido termine
+  clickSound.addEventListener('ended', () => {
+    isSoundPlaying = false; // El sonido ha terminado
+  });
+}
+
   // Agregar evento al botón para alternar entre imágenes normales y shiny
   document.getElementById("toggleShiny").addEventListener("click", function () {
       const frontImage = document.getElementById("pokemonFront");
       const backImage = document.getElementById("pokemonBack");
+      playClickSound();
 
       if (frontImage.src === data.sprites.other.showdown.front_default) {
           // Cambiar a imágenes shiny

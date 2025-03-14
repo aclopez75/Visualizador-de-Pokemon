@@ -77,10 +77,6 @@ main{
     transition: all 0,5s ease;
 }
 
-#container-card:hover{
-    /* box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.274); */
-}
-
 #container{
     background-color: rgba(128, 128, 128, 0.527);
     display: flex;
@@ -103,9 +99,7 @@ main{
     align-items: center;
     height: 150px;
     width: auto;
-    
 }
-
 
 #pokemonFront{
     max-width: 95%;
@@ -125,12 +119,6 @@ main{
 
 #pokemonBack:hover{
     scale: 1.1;
-}
-
-h2{
-    /* background-color: #fff;
-    border-radius: 15px;
-    padding: 10px; */
 }
 
 #pokemonStats {
@@ -153,8 +141,6 @@ h2{
 
 #typesBox{
     font-size: 0.75rem;
-  
-    
 }
 
 
@@ -201,17 +187,48 @@ h2{
     text-align: right;
   }
 
-
-  
-
 /* ---------------------------------------------------------------------------------------- */
 
-/* #suggestionContainer{
-    padding-bottom: 2rem;
-    background-color: red;
-    position: fixed;
-    top: 20rem;
-} */
+.stats-container {
+    gap: 20px; /* Espacio entre los stats */
+    width: 100%;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+div.bar-container{
+    width: 80%;
+    height: 1.4rem;
+    transition: all 0.4s ease;
+}
+
+div.bar-container:hover{
+    width: 90%;
+}
+
+p.stat-name {
+    text-transform: uppercase;
+    font-size: 1rem;
+    width: 250px;
+    margin-right: 10px;
+    transition: all 0.4s ease;
+}
+
+p.stat-name:hover{
+    scale: 1.05;
+}
+.stat-value {
+    font-size: 1rem;
+    transition: all 0.4s ease;
+}
+
+.stat-value:hover{
+    scale: 1.25;
+}
 
 #suggestions{
     background-color: #fff;
@@ -226,12 +243,12 @@ h2{
     font-size: 1rem;
   }
   
-  .suggestion-item{
+.suggestion-item{
     padding: 8px;
     cursor: pointer;
   }
   
-  .suggestion-item:hover{
+.suggestion-item:hover{
     background-color: #f1f1f1;
   }
   
@@ -254,8 +271,6 @@ h2{
     max-width: 100%;
     scale: 0.5;
 }
-
-
 
 /* ---------------------------------------------------------------------------------------- */
 
