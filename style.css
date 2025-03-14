@@ -23,7 +23,6 @@ body{
 main{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -49,7 +48,6 @@ main{
 
 #searchPokemon::placeholder{
     font-size: 0.75rem;
-    /* text-transform: uppercase; */
     font-weight: 600;
 }
 
@@ -166,7 +164,7 @@ main{
     text-transform: capitalize;
     width: 120px;
   }
-  
+
   .bar-container {
     width: 200px;
     height: 15px;
@@ -191,7 +189,7 @@ main{
 /* ---------------------------------------------------------------------------------------- */
 
 .stats-container {
-    gap: 20px; /* Espacio entre los stats */
+    gap: 20px;
     width: 100%;
 }
 
@@ -215,13 +213,13 @@ p.stat-name {
     text-transform: uppercase;
     font-size: 1rem;
     width: 250px;
-    margin-right: 10px;
     transition: all 0.4s ease;
 }
 
 p.stat-name:hover{
     scale: 1.05;
 }
+
 .stat-value {
     font-size: 1rem;
     transition: all 0.4s ease;
@@ -239,7 +237,7 @@ p.stat-name:hover{
 }
 
 #suggestions{
-    background-color: #fff;
+    background-color: white;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     position: static;
@@ -274,7 +272,6 @@ p.stat-name:hover{
 }
 
 #shinySparkleImg{
-    /* padding: 3px; */
     height: 50%;
     max-width: 100%;
     scale: 0.5;
@@ -282,111 +279,103 @@ p.stat-name:hover{
 
 /* ---------------------------------------------------------------------------------------- */
 
-@media (max-width: 600px){
-
-    body{
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        font-size: 1rem;
-        overflow: hidden;
-    }
-
-    #logo-pokemon{
-        height: auto;
-        width: 12rem;
-        margin-bottom: 20px;
+@media (max-width: 600px) {
+    body {
+        font-size: 1.2rem;
     }
 
     #searchPokemon{
-        width: 80%;
-        padding: 8px;
-        font-size: 0.8rem;
+        width: 150px; 
+        height: 1.8rem;
+        font-size: 0.9rem;
+        margin-top: 0px;
+    }
+
+    #logo-pokemon{
+        width: 15rem;
+        margin-top: 20px;
+    }
+
+    #container{
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    #container-card{
+        top: 10.5rem;
+        width: 90%;
+        padding: 15px;
+    }
+
+    #pokemonStats{
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .stat{
+        max-width: 100%;
+    }
+
+    .stats-container{
+        gap: 10px;
+    }
+
+    p.stat-name{
+        width: 150px;
     }
 
     #suggestions{
-        width: 80%;
-    }
-    #container-card{
-        height: auto;
-        width: 80%;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 20px;
+        width: 150px; 
+        max-height: 200px;
     }
 
-    #container {
-        display: flex;
-        flex-direction: column;
-        gap: 0px;
-        padding: 15px 32.5px;
+    #toggleShiny{
+        width: 150px;
+        height: 150px;
     }
 
-    h2 {
-        font-size: 1.2rem;
-    }
-
-    #pokemonData{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 0.8rem;
-    }
-
-    #pokemonImg {
-        scale: 0.8;
-    }
-
-    #pokemonStats {
-        padding: 10px;
-        gap: 25px;
-    }
-
-    h3 {
-        margin-top: 10px;
-    }
-
-    .stats-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .stat-name {
-        font-size: 0.6rem;
-        text-align: center;
-    }
-
-    .stat-value {
-        font-size: 1.2rem;
+    #shinySparkleImg {
+        height: 40%;
     }
 }
 
 @media (min-width: 600px) and (max-width: 800px) {
 
     #logo-pokemon{
-        width: 45%;
+        width: 35%;
     }
 
     #searchPokemon{
-        margin-bottom: 55px;
+        height: 35px;
     }
 
     #container-card{
-        height: 500px;
-        gap: 45px;
+        scale: .90;
+        margin-top: 0px;
+        top: 17rem;
     }
 
     #pokemonStats{
         gap: 25px;
-        padding: 30px;
+        padding: 28px;
     }
 
-    .stat-name{
-        font-size: 1rem;
+    .stat{
+        max-width: 100%;
+    }
+
+    .stats-container{
+        gap: 10px;
+    }
+
+    p.stat-name{
+        width: 150px;
+        font-size: 1.2rem;
     }
 
     .stat-value{
-        font-size: 2rem;
+        font-size: 1.3rem;
     }
 }
