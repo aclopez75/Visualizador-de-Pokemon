@@ -30,7 +30,8 @@ main{
 #searchPokemon{
     margin-top: 4rem;
     background-color: white;
-    width: 160px;
+    width: 200px;
+    height: 2rem;
     border: rgb(54, 54, 54) 10px;
     padding: 6px;
     border-radius: 15px;
@@ -39,8 +40,6 @@ main{
     padding-left: 15px;
     padding-right: 15px;
     z-index: 1;
-    
-    
 }
 
 #searchPokemon:focus{
@@ -75,6 +74,8 @@ main{
     margin-top: 20px;
     border-radius: 20px;
     transition: all 0,5s ease;
+    position: fixed;
+    top: 20rem;
 }
 
 #container{
@@ -230,13 +231,20 @@ p.stat-name:hover{
     scale: 1.25;
 }
 
+#suggestionsContainer{
+    background-color: white;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
 #suggestions{
     background-color: #fff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     position: static;
     overflow-y: auto;
-    width: 160px;
+    width: 200px;
     max-height: 250px;
     z-index: 10;
     display: none;
