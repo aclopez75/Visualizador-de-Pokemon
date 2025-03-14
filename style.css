@@ -6,14 +6,19 @@
     box-sizing: border-box;
 }
 
+body,html{
+    height: 100%;
+}
+
 body{
     background-image: url("./img/iniciales.jpg");
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    /* min-height: 100vh; */
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -24,6 +29,7 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
 #searchPokemon{
@@ -74,6 +80,7 @@ main{
     transition: all 0,5s ease;
     position: fixed;
     top: 20rem;
+    
 }
 
 #container{
@@ -282,6 +289,8 @@ p.stat-name:hover{
 @media (max-width: 600px) {
     body {
         font-size: 1.2rem;
+        overflow-y: auto;
+        height: 200vh;
     }
 
     #searchPokemon{
@@ -303,15 +312,24 @@ p.stat-name:hover{
     }
 
     #container-card{
-        top: 10.5rem;
+        top: 0;
         width: 90%;
         padding: 15px;
+        /* scale: 0.85; */
+        min-height: 100vh;
+        position: relative;
+        margin-top: 0px;
     }
 
     #pokemonStats{
         grid-template-columns: 1fr;
         padding: 20px;
         gap: 10px;
+    }
+
+    #pokemonImg{
+        padding: 40px;
+        scale: 1.5;
     }
 
     .stat{
@@ -332,12 +350,14 @@ p.stat-name:hover{
     }
 
     #toggleShiny{
-        width: 150px;
-        height: 150px;
+        width: auto;
+        height: auto;
     }
 
     #shinySparkleImg {
-        height: 40%;
+        height: auto;
+        width: 60px;
+        scale: 1;
     }
 }
 
