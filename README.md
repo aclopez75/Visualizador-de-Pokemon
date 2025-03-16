@@ -1,4 +1,9 @@
 # Visualizador de Pokémon
+Este es un proyecto realizado en 2025 Hack A Boss por:
+Adolfo Chaves
+Jordi Roigé
+Laia Clemente
+Sergio Castillo
 
 # Index
 Hemos generado la estructura inicial de nuestra aplicación web siguiendo los pasos que requería el proyecto, cabe decir tambíen que hemos usado el idioma inglés en toda la página para darle un aspecto más profesional a nivel código para todo, menos los comentarios.
@@ -13,10 +18,14 @@ Para dar efectos extra y hacer la experiéncia de usuario más interactiva y vis
 Para finalizar, hemos adaptado el diseño a los distintos tipos de pantalla mediante el selector @media, dividiendo entre pantallas mobile y pantallas de tableta.
 
 # Script
-Una vez hemos creado el index con los elementos principales de nuestra web, y hemos distribuido dichos elementos, generamos la lógica de nuestro proyecto:
-    - Consumimos la api con la función Fetch, con uso de async / await para manejar la asincronía de la respuesta de la API.
-    - Creamos una función que genera e indexa elementos al HTML mediante innerHTML. En esta función recorremos la API y obtenemos los valores que nos interesan de esta. También utilizamos funciones callback para consumir la API y poder modificar estos valores en el innerHTML, como por ejemplo al crear las barras dinámicas de los stats, al llamar a la función que genera una imagen de error en caso de que el pokemon llamado no tenga foto trasera, al llamar a los tipos, etc.
-    - Utilizamos el método new Audio para importar un sonido y llamarlo al ejecutar el evento click, evento creado para mostrar los shiny de cada pokémon al hacer click en un botón.
+Una vez hemos creado el index con los elementos principales de nuestra web y hemos distribuido dichos elementos, generamos la lógica de nuestro proyecto:
+    - Consumimos la API con la función Fetch, con uso de async / await para manejar la asincronía de la respuesta de la API.
+    - Creamos una función que genera e indexa elementos al HTML mediante innerHTML. En esta función recorremos la API y obtenemos los valores que nos interesan de la misma. También utilizamos funciones callback para consumir la API y poder modificar estos valores en el innerHTML, como por ejemplo:
+        - Al crear las barras dinámicas de los stats que irán cambiando en base al valor que tenga cada uno independientemente
+        - Al llamar a la función que genera una imagen de error en caso de que el Pokémon llamado no tenga foto trasera
+        - Al llamar a los tipos
+        - etc.
+    - Utilizamos el método new Audio para importar un sonido y llamarlo al ejecutar el evento click, evento creado para mostrar los shiny de cada Pokémon al hacer click en un botón.
     - Creamos la función que inicia la búsqueda cuando el usuario escribe en el input. Esta función tiene como callback a la función fetchPokemon, que es la que consume la API y tiene como callbacks a la función displayPokemon y typeColors, que son las funciones que generan el innerHTML segun los datos de la API.
-    - Generamos una función asociada al input que, en base a los carácteres que introduce el usuario, te sugiere una lista ordenada de pokémons que permite al usuario tener sugerencias sobre su busqueda en concreto.
-    - Finalmente añadimos una función que resetea la función de las sugerencias y el input, para limpiar todo el contenido una vez se borren los datos de la búsqueda.
+    - Generamos una función asociada al input que, en base a los carácteres que introduce el usuario, te sugiere una lista ordenada de Pokémons que permite al usuario tener sugerencias sobre su busqueda en concreto.
+    - Finalmente añadimos una función que resetea la interfaz para limpiar todo el contenido una vez se borren los datos de la búsqueda.

@@ -20,70 +20,104 @@ async function fetchPokemon(pokemonName) {
   }
 }
 
-// Funcion para llamar a la imágen de detrás
-
-function getBackImg (pokemon){
-  if(pokemon.sprites.other.showdown.back_default){
-    return pokemon.sprites.other.showdown.back_default;
-    } else{
-      return './img/not-found.png'
-    }
-}
-
 function typeColors(data) {
   const typesContainer = document.getElementById('typesBox');
   typesContainer.innerHTML = ""; // Limpiar contenido antes de añadir nuevos tipos
-
+  
   // Mapeo de colores por tipo
   const typeColors = {
-      normal: "#A8A878",
-      grass: "#78C850",
-      fire: "#F08030",
-      water: "#6890F0",
-      electric: "#F8D030",
-      ice: "#98D8D8",
-      fighting: "#C03028",
-      poison: "#A040A0",
-      ground: "#E0C068",
-      flying: "#A890F0",
-      psychic: "#F85888",
-      bug: "#A8B820",
-      rock: "#B8A038",
-      ghost: "#705898",
-      dragon: "#7038F8",
-      dark: "#705848",
-      steel: "#B8B8D0",
-      fairy: "#EE99AC"
+    normal: "#A8A878",
+    grass: "#78C850",
+    fire: "#F08030",
+    water: "#6890F0",
+    electric: "#F8D030",
+    ice: "#98D8D8",
+    fighting: "#C03028",
+    poison: "#A040A0",
+    ground: "#E0C068",
+    flying: "#A890F0",
+    psychic: "#F85888",
+    bug: "#A8B820",
+    rock: "#B8A038",
+    ghost: "#705898",
+    dragon: "#7038F8",
+    dark: "#705848",
+    steel: "#B8B8D0",
+    fairy: "#EE99AC"
   };
-
+  
   // Recorrer todos los tipos del Pokémon
   data.types.forEach(typeInfo => {
-      const typeName = typeInfo.type.name; // Nombre del tipo
-      const typeColor = typeColors[typeName] || "#68A090"; // Color, con un fallback
-      const typeDiv = document.createElement('div');
-
-      // Aplicar estilos al contenedor del tipo
-      typeDiv.style.backgroundColor = typeColor;
-      typeDiv.style.color = "black";
-      typeDiv.style.padding = "5px 10px";
-      typeDiv.style.borderRadius = "10px";
-      typeDiv.style.display = "inline-block";
-      typeDiv.style.fontWeight = "600";
-      typeDiv.style.textTransform = "uppercase";
-      typeDiv.style.width = "fit-content";
-      typeDiv.style.marginRight = "10px";
-      typeDiv.style.marginBottom = "10px";
-
-      // Crear el texto del tipo
-      const typeText = document.createElement('span');
-      typeText.textContent = typeName;
-
-      // Agregar icono y texto al contenedor del tipo
-      typeDiv.appendChild(typeText);
-
-      // Agregar el tipo al contenedor principal
-      typesContainer.appendChild(typeDiv);
+    const typeName = typeInfo.type.name; // Nombre del tipo
+    const typeColor = typeColors[typeName] || "#68A090"; // Color, con un fallback
+    const typeDiv = document.createElement('div');
+    
+    // Aplicar estilos al contenedor del tipo
+    typeDiv.style.backgroundColor = typeColor;
+    typeDiv.style.color = "black";
+    typeDiv.style.padding = "5px 10px";
+    typeDiv.style.borderRadius = "10px";
+    typeDiv.style.display = "inline-block";
+    typeDiv.style.fontWeight = "600";
+    typeDiv.style.textTransform = "uppercase";
+    typeDiv.style.width = "fit-content";
+    typeDiv.style.marginRight = "10px";
+    typeDiv.style.marginBottom = "10px";
+    
+    // Crear el texto del tipo
+    const typeText = document.createElement('span');
+    typeText.textContent = typeName;
+    
+    // Agregar icono y texto al contenedor del tipo
+    typeDiv.appendChild(typeText);
+    
+    // Agregar el tipo al contenedor principal
+    typesContainer.appendChild(typeDiv);
   });
+}
+
+// Funcion para llamar a la imágen de delante
+function getFrontImg (pokemon){
+  if(pokemon.sprites.other.showdown.front_default){
+    return pokemon.sprites.other.showdown.front_default;
+  } else if (pokemon.sprites.front_default){
+    return pokemon.sprites.front_default;
+  } else{
+    return './img/not-found.png'
+    }
+}
+
+// Funcion para llamar a la imágen de detrás
+function getBackImg (pokemon){
+  if(pokemon.sprites.other.showdown.back_default){
+    return pokemon.sprites.other.showdown.back_default;
+  } else if (pokemon.sprites.back_default){
+    return pokemon.sprites.back_default;
+  } else{
+    return './img/not-found.png'
+    }
+}
+
+// Funcion para llamar a la imágen shiny de delante
+function getFrontShiny (pokemon){
+  if(pokemon.sprites.other.showdown.front_shiny){
+    return pokemon.sprites.other.showdown.front_shiny;
+  } else if (pokemon.sprites.front_shiny){
+    return pokemon.sprites.front_shiny;
+  } else{
+    return './img/not-found.png'
+    }
+}
+
+// Funcion para llamar a la imágen shiny de detrás
+function getBackShiny (pokemon){
+  if(pokemon.sprites.other.showdown.back_shiny){
+    return pokemon.sprites.other.showdown.back_shiny;
+  } else if (pokemon.sprites.back_shiny){
+    return pokemon.sprites.back_shiny;
+  } else{
+    return './img/not-found.png'
+    }
 }
 
 // Función para mostrar la información del Pokémon.
@@ -91,28 +125,29 @@ function displayPokemon(data) {
   const pokemonInfo = document.getElementById('container-card');
   pokemonInfo.style.display = "flex";
   const backImg = getBackImg(data);
+  const frontImg = getFrontImg(data);
   const statMaxValues = {
     hp: 255,
-    attack: 190,
-    defense: 250,
-    special_attack: 190,
-    special_defense: 250,
-    speed: 150
+    attack: 255,
+    defense: 255,
+    special_attack: 255,
+    special_defense: 255,
+    speed: 255
   };
-
+  
   // Función para obtener el valor máximo de la estadística de la API
-function getMaxStatValue(statName) {
+  function getMaxStatValue(statName) {
   // Convertir el nombre de la estadística a formato con guiones bajos (en caso de que sea con guiones medios)
   const normalizedStatName = statName.replace(/-/g, "_");
   
   // Retornar el valor máximo correspondiente, si existe en el objeto
   return statMaxValues[normalizedStatName] || 0; // Si no existe, retorna 0
-}
+  }
   
   pokemonInfo.innerHTML = `
   <div id="container">
       <div id="pokemonImg">
-          <img id="pokemonFront" src="${data.sprites.other.showdown.front_default}" alt="${data.name}">
+          <img id="pokemonFront" src="${frontImg}" alt="${data.name}">
           <button id="toggleShiny"><img id="shinySparkleImg" src="./img/shiny-sparkle.png" alt="Shiny"></button>
           <img id="pokemonBack" src="${backImg}" alt="${data.name}">
       </div>
@@ -171,35 +206,40 @@ function playClickSound() {
   });
 }
 
-  // Agregar evento al botón para alternar entre imágenes normales y shiny
-  document.getElementById("toggleShiny").addEventListener("click", function () {
-      const frontImage = document.getElementById("pokemonFront");
-      const backImage = document.getElementById("pokemonBack");
-      playClickSound();
+// Funcion para obtener el shiny
+document.getElementById("toggleShiny").addEventListener("click", function () {
+  const frontImage = document.getElementById("pokemonFront");
+  const backImage = document.getElementById("pokemonBack");
+  playClickSound();
 
-      if (frontImage.src === data.sprites.other.showdown.front_default) {
-          // Cambiar a imágenes shiny
-          frontImage.src = data.sprites.other.showdown.front_shiny;
-          // this.textContent = "Default";
-          if(data.sprites.other.showdown.back_default){
-            return backImage.src = data.sprites.other.showdown.back_shiny;
-            } else{
-              return backImage.src = './img/close.png';
-          }
-          frontImage.classList.add("shiny");
-          backImage.classList.add("shiny");
-          
+  // Obtener las imágenes frontales y traseras
+  const frontNormal = getFrontImg(data);
+  const backNormal = getBackImg(data);
+
+  // Obtener las imágenes shiny
+  const frontShiny = getFrontShiny(data);
+  const backShiny = getBackShiny(data);
+
+  // Cambiar a imágenes shiny
+  if (frontImage.src === frontNormal) {
+      if (frontShiny && backShiny) {
+          frontImage.src = frontShiny;
+          backImage.src = backShiny;
       } else {
-          // Volver a imágenes normales
-          frontImage.src = data.sprites.other.showdown.front_default;
-          // this.textContent = "Shiny";
-          if(data.sprites.other.showdown.back_default){
-            return backImage.src = data.sprites.other.showdown.back_default;
-            } else{
-              return backImage.src = './img/close.png';
-          }
+          frontImage.src = './img/not-found.png';
+          backImage.src = './img/not-found.png';
       }
-  });
+      frontImage.classList.add("shiny");
+      backImage.classList.add("shiny");
+
+  // Volver a imágenes normales
+  } else {
+      frontImage.src = frontNormal;
+      backImage.src = backNormal;
+      frontImage.classList.remove("shiny");
+      backImage.classList.remove("shiny");
+  }
+});
 }
 
 // Función para iniciar la búsqueda cuando el usuario escribe un nombre de Pokémon.
